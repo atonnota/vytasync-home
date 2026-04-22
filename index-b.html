@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
   --sage:#9bc4ab;--sage2:#c5dccb;
   --bd:#111;
   --bd-dark:rgba(255,255,255,.08);--bd-light:rgba(0,0,0,.08);
-  --muted-dark:rgba(232,228,222,.52);--muted-light:rgba(0,0,0,.46);
+  --muted-dark:rgba(232,228,222,.74);--muted-light:rgba(0,0,0,.62);
 }
 
 /* ── TICKER ─────────────────────────── */
@@ -105,10 +105,10 @@ h1.hero-h1{font-size:clamp(48px,7.5vw,90px);font-weight:400;line-height:1.02;let
 .cd-sep{font-size:22px;color:rgba(255,255,255,.22);margin-bottom:14px}
 .cd-label{font-size:9.5px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
 .prog-top{display:flex;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,.36);margin-bottom:7px;letter-spacing:.3px}
-.prog-top strong{color:rgba(255,255,255,.74)}
+.prog-top strong{color:rgba(255,255,255,.88)}
 .prog-bar{height:4px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
 .prog-fill{height:100%;width:52.7%;background:linear-gradient(90deg,var(--sage),var(--sage2));border-radius:10px}
-.prog-note{font-size:11.5px;color:rgba(255,255,255,.3);text-align:right;margin-top:5px}
+.prog-note{font-size:11.5px;color:rgba(255,255,255,.48);text-align:right;margin-top:5px}
 
 /* ── STATS BAR (light) ──────────────── */
 .stats-bar{background:var(--light);display:flex;justify-content:center;padding:44px 48px;border-bottom:1px solid var(--bd-light)}
@@ -123,7 +123,7 @@ h1.hero-h1{font-size:clamp(48px,7.5vw,90px);font-weight:400;line-height:1.02;let
 .wrap{max-width:1040px;margin:0 auto;padding:96px 48px}
 .wrap-narrow{max-width:760px;margin:0 auto;padding:96px 48px}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:20px;display:block}
-.eyebrow.dk{color:rgba(0,0,0,.38)}
+.eyebrow.dk{color:rgba(0,0,0,.55)}
 h2.big{font-size:clamp(36px,5vw,56px);font-weight:400;letter-spacing:-1px;line-height:1.08;color:#fff;margin-bottom:14px}
 h2.big.onl{color:#111}
 p.lead{font-size:17px;color:var(--muted-dark);font-weight:300;max-width:500px;line-height:1.65;margin-bottom:48px}
@@ -239,7 +239,7 @@ p.lead.onl{color:var(--muted-light)}
 /* ── PRESS / MEDIA ───────────────────── */
 .press-section{background:var(--dark);padding:80px 48px;border-top:1px solid var(--bd-dark);border-bottom:1px solid var(--bd-dark)}
 .press-inner{max-width:1040px;margin:0 auto;text-align:center}
-.press-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:36px;display:block}
+.press-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:36px;display:block}
 .press-logos{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--bd-dark);border:1px solid var(--bd-dark);border-radius:14px;overflow:hidden;margin-bottom:48px}
 .press-logo{background:var(--dark);display:flex;align-items:center;justify-content:center;padding:22px 16px;min-height:68px;transition:background .2s}
 .press-logo img{height:22px;width:auto;max-width:110px;filter:brightness(0) invert(1);opacity:.7;transition:opacity .2s}
@@ -270,7 +270,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
 @media(max-width:900px){
   nav{padding:0 20px}
   .nav-right .nav-link,.ks-nav-link span{display:none}
-  .wrap,.wrap-narrow{padding:64px 20py}
+  .wrap,.wrap-narrow{padding:64px 20px}
   .stats-bar{flex-wrap:wrap;padding:28px 20px;gap:0}
   .stat-item{min-width:50%;padding:16px 20px;border-bottom:1px solid var(--bd-light)}
   .stat-item:nth-child(odd){border-right:1px solid var(--bd-light)}
@@ -283,7 +283,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
   .rev-grid{grid-template-columns:1fr}
   .offer-box{grid-template-columns:1fr}
   .offer-r{border-left:none;border-top:1px solid var(--bd-dark)}
-  .trust-bar{flex-direction:column;align-items:flex-start;gap:20px;padding:32px 20py}
+  .trust-bar{flex-direction:column;align-items:flex-start;gap:20px;padding:32px 20px}
   .trust-item{border-right:none;padding:0}
   .bottom-cta{padding:72px 20px}
   footer{padding:20px;flex-direction:column;text-align:center;padding-bottom:80px}
