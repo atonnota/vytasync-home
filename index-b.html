@@ -661,16 +661,35 @@ async function sub(src){
   const map={h:{eid:'hf-email',pid:'hf-pill',oid:'hf-ok',loc:'hero'},b:{eid:'bf-email',pid:'bf-pill',oid:'bf-ok',loc:'offer'},b2:{eid:'bf2-email',pid:'bf2-pill',oid:'bf2-ok',loc:'bottom'},sticky:{eid:'sticky-email',pid:null,oid:'sticky-ok',loc:'sticky'}};
   const{eid,pid,oid,loc}=map[src];
   const el=document.getElementById(eid);
-  const email=el.value.trim();
+  const email=el.value.trim().toLowerCase();
   const pill=pid?document.getElementById(pid):el.closest('.sticky');
   if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){pill.style.borderColor='rgba(255,80,80,.6)';el.focus();setTimeout(()=>pill.style.borderColor='',1600);return;}
   const btn=pill.querySelector('button');
+  // === 防重复：本浏览器已经成功提交过 → 直接显示成功，不发 fetch、不发 Pixel ===
+  var alreadyKey='vytasync_subbed_'+email;
+  try{ if(localStorage.getItem(alreadyKey)){
+      if(pid)document.getElementById(pid).style.display='none';
+      document.getElementById(oid).style.display='block';
+      if(src==='sticky'){el.style.display='none';btn.style.display='none';document.getElementById('sticky-ok').style.display='block';}
+      return;
+  }}catch(_){ /* localStorage may be blocked, fall through */ }
   const orig=btn.textContent;btn.textContent='Joining…';btn.disabled=true;
+  // 抓 UTM 与 fbclid 一同上报 Klaviyo
+  var qs=new URLSearchParams(location.search);
+  var utm={};['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid'].forEach(function(k){var v=qs.get(k);if(v)utm[k]=v;});
+  var body='g=Us6BtR&email='+encodeURIComponent(email)+'&$source='+encodeURIComponent('Landing Page B - '+loc);
+  Object.keys(utm).forEach(function(k){body+='&'+encodeURIComponent(k)+'='+encodeURIComponent(utm[k]);});
+  // 用同一个 event_id 让 Meta 在 Pixel + CAPI 之间去重
+  var eventId='lead_'+email.replace(/[^a-z0-9]/g,'')+'_'+Math.floor(Date.now()/86400000);
   try{
-    const r=await fetch('https://a.klaviyo.com/ajax/subscriptions/subscribe',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'g=Us6BtR&email='+encodeURIComponent(email)+'&$source='+encodeURIComponent('Landing Page B - '+loc)});
-    const j=await r.json();if(j.success){
-      if(typeof fbq!=='undefined')fbq('track','Lead');
-      if(typeof gtag!=='undefined')gtag('event','generate_lead',{signup_location:loc,event_label:'Klaviyo Subscribe'});
+    const r=await fetch('https://a.klaviyo.com/ajax/subscriptions/subscribe',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body});
+    if(!r.ok){btn.textContent=orig;btn.disabled=false;return;}
+    const j=await r.json();
+    if(j&&j.success){
+      // 标记已订阅，下次同邮箱再点直接走"已订阅"分支
+      try{ localStorage.setItem(alreadyKey,Date.now()); }catch(_){}
+      if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:'email_signup',content_category:loc},{eventID:eventId});
+      if(typeof gtag!=='undefined')gtag('event','generate_lead',{signup_location:loc,event_label:'Klaviyo Subscribe',event_id:eventId});
       if(pid)document.getElementById(pid).style.display='none';
       document.getElementById(oid).style.display='block';
       if(src==='sticky'){el.style.display='none';btn.style.display='none';document.getElementById('sticky-ok').style.display='block';}
