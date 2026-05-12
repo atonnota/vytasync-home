@@ -88,6 +88,12 @@ h1.hero-h1{font-size:clamp(48px,7.5vw,90px);font-weight:400;line-height:1.02;let
 .btn.inv:hover{background:#222}
 .microcopy{font-size:12px;color:rgba(255,255,255,.28);font-weight:300}
 .ok-msg{display:none;color:var(--sage2);font-size:15px;font-weight:500;padding:10px 0}
+.ok-msg .ok-ks-prompt{margin-top:10px;color:rgba(232,228,222,.78);font-size:13.5px;font-weight:400;line-height:1.55}
+.ok-ks-cta{display:inline-flex;align-items:center;gap:9px;margin-top:12px;background:#05CE78;color:#fff;text-decoration:none;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:600;letter-spacing:.2px;transition:transform .15s,background .2s;font-family:'DM Sans',sans-serif}
+.ok-ks-cta:hover{background:#04b369;transform:scale(1.02);color:#fff}
+.ok-ks-cta svg{flex-shrink:0}
+.ok-ks-cta-sm{display:inline-flex;align-items:center;gap:6px;background:#05CE78;color:#fff;text-decoration:none;padding:6px 12px;border-radius:100px;font-size:12px;font-weight:600;margin-left:8px;transition:background .2s;white-space:nowrap}
+.ok-ks-cta-sm:hover{background:#04b369;color:#fff}
 
 /* hero quote — B改动#5 */
 .hero-quote{margin-top:28px;background:rgba(255,255,255,.045);border:1px solid var(--bd-dark);border-radius:14px;padding:18px 22px;max-width:460px;text-align:left}
@@ -344,7 +350,14 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
         <!-- B改动#4: CTA利益导向 -->
         <button class="btn" onclick="sub('h')">Claim 50% Off — Free</button>
       </div>
-      <div id="hf-ok" class="ok-msg reveal">🎉 You're in! We'll notify you at launch.</div>
+      <div id="hf-ok" class="ok-msg reveal">
+        🎉 You're in! We'll notify you at launch.
+        <div class="ok-ks-prompt">👉 One more step — follow us on Kickstarter so you're first to know when we go live:</div>
+        <a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="ok-ks-cta" onclick="trackKSFollow('hero')">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="#fff"/><text x="4.5" y="13.5" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="#05CE78">K</text></svg>
+          Follow on Kickstarter
+        </a>
+      </div>
       <p class="microcopy reveal">No payment now · No credit card · Ships Q3 2026</p>
     </div>
 
@@ -587,7 +600,14 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
           <input id="bf-email" type="email" placeholder="your@email.com" autocomplete="email">
           <button class="btn" onclick="sub('b')">Claim My Spot — Free</button>
         </div>
-        <div id="bf-ok" class="ok-msg">🎉 You're on the list! We'll notify you at launch.</div>
+        <div id="bf-ok" class="ok-msg">
+          🎉 You're on the list! We'll notify you at launch.
+          <div class="ok-ks-prompt">👉 One more step — follow us on Kickstarter so you're first to know when we go live:</div>
+          <a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="ok-ks-cta" onclick="trackKSFollow('offer')">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="#fff"/><text x="4.5" y="13.5" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="#05CE78">K</text></svg>
+            Follow on Kickstarter
+          </a>
+        </div>
         <p class="microcopy">No spam · Unsubscribe anytime · Ships Q3 2026</p>
       </div>
     </div>
@@ -625,7 +645,14 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
     <input id="bf2-email" type="email" placeholder="your@email.com" autocomplete="email">
     <button class="btn" onclick="sub('b2')">Claim 50% Off — Free</button>
   </div>
-  <div id="bf2-ok" class="ok-msg reveal">🎉 You're on the list! We'll notify you at launch.</div>
+  <div id="bf2-ok" class="ok-msg reveal">
+    🎉 You're on the list! We'll notify you at launch.
+    <div class="ok-ks-prompt">👉 One more step — follow us on Kickstarter so you're first to know when we go live:</div>
+    <a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="ok-ks-cta" onclick="trackKSFollow('bottom')">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="#fff"/><text x="4.5" y="13.5" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="#05CE78">K</text></svg>
+      Follow on Kickstarter
+    </a>
+  </div>
   <p class="microcopy reveal">No spam · Unsubscribe anytime · Ships Q3 2026</p>
 </div>
 
@@ -640,7 +667,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
 <div class="sticky" id="sticky">
   <input id="sticky-email" type="email" placeholder="Enter email for 50% off">
   <button class="btn" style="padding:11px 18px;font-size:13px" onclick="sub('sticky')">Claim</button>
-  <div class="sticky-ok" id="sticky-ok">🎉 You're in!</div>
+  <div class="sticky-ok" id="sticky-ok">🎉 You're in!<a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="ok-ks-cta-sm" onclick="trackKSFollow('sticky')">Follow on KS ↗</a></div>
 </div>
 
 <script>
@@ -656,6 +683,15 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
   }
   tick();setInterval(tick,1000);
 })();
+
+// 跟踪 KS Follow CTA 点击（成功页二次转化），与 sub() Lead 事件用同样的 Pixel/GA 双路
+function trackKSFollow(loc){
+  try{
+    var eid='ksfollow_'+loc+'_'+Math.floor(Date.now()/86400000);
+    if(typeof fbq!=='undefined')fbq('trackCustom','KSFollowClick',{location:loc},{eventID:eid});
+    if(typeof gtag!=='undefined')gtag('event','ks_follow_click',{signup_location:loc,event_label:'Kickstarter Follow CTA',event_id:eid});
+  }catch(_){}
+}
 
 async function sub(src){
   const map={h:{eid:'hf-email',pid:'hf-pill',oid:'hf-ok',loc:'hero'},b:{eid:'bf-email',pid:'bf-pill',oid:'bf-ok',loc:'offer'},b2:{eid:'bf2-email',pid:'bf2-pill',oid:'bf2-ok',loc:'bottom'},sticky:{eid:'sticky-email',pid:null,oid:'sticky-ok',loc:'sticky'}};
