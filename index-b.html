@@ -107,7 +107,8 @@ h1.hero-h1{font-size:clamp(48px,7.5vw,90px);font-weight:400;line-height:1.02;let
 
 /* countdown */
 .urgency{margin-top:32px;width:100%;max-width:460px;margin-left:auto;margin-right:auto}
-.cd-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:18px}
+.cd-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:18px;flex-wrap:nowrap}
+@media (max-width:480px){.cd-row{gap:10px}.cd-num{font-size:26px}.cd-sep{font-size:18px;margin-bottom:12px}.cd-label{font-size:8.5px;letter-spacing:1.5px}}
 .cd-unit{text-align:center}
 .cd-num{font-size:30px;font-weight:400;color:#fff;letter-spacing:-1px;line-height:1}
 .cd-sep{font-size:22px;color:rgba(255,255,255,.22);margin-bottom:14px}
@@ -310,7 +311,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
 <body>
 
 <!-- TICKER -->
-<div class="ticker"><strong>Only 142 early bird spots left</strong> — over 10,000 sleepers have already tested Vytasync</div>
+<div class="ticker"><strong>Only <span class="spots-counter">142</span> early bird spots left</strong> — over 10,000 sleepers have already tested Vytasync</div>
 
 <!-- NAV -->
 <nav>
@@ -325,7 +326,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
 
 <!-- ══ HERO ════════════════════════════════════════════════════ -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="https://vytasync.com/wp-content/uploads/2026/03/2026033109230125.mp4#t=0.5">
     <source src="https://vytasync.com/wp-content/uploads/2026/03/2026033109230125.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -380,7 +381,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
       <div class="cd-row">
         <div class="cd-unit"><div class="cd-num" id="cd-d">60</div><div class="cd-label">Days</div></div>
         <div class="cd-sep">:</div>
-        <div class="cd-unit"><div class="cd-num" id="cd-h">13</div><div class="cd-label">Hrs</div></div
+        <div class="cd-unit"><div class="cd-num" id="cd-h">13</div><div class="cd-label">Hrs</div></div>
         <div class="cd-sep">:</div>
         <div class="cd-unit"><div class="cd-num" id="cd-m">59</div><div class="cd-label">Min</div></div>
         <div class="cd-sep">:</div>
@@ -388,7 +389,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
       </div>
       <div class="prog-top"><span>EARLY BIRD SPOTS</span><span><strong>158</strong> / 300 claimed · 10,847+ total testers</span></div>
       <div class="prog-bar"><div class="prog-fill"></div></div>
-      <div class="prog-note">Only 142 spots remain at 50% off</div>
+      <div class="prog-note">Only <span class="spots-counter">142</span> spots remain at 50% off</div>
     </div>
   </div>
 </section>
@@ -583,21 +584,21 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
     <div class="offer-box reveal">
       <div class="offer-l">
         <div class="offer-badge">Super Early Bird</div>
-        <h3>Save up to $260<br>off retail price</h3>
+        <h3>Save up to $320<br>off retail price</h3>
         <p>Your price locks in the moment you reserve — free, no credit card. You only pay when Kickstarter launches in June 2026, if you choose to back it.</p>
-        <div class="price-row"><span class="price-now">From $299</span><span class="price-was">$560+</span></div>
-        <div class="price-save">You save up to $260 · 50% off retail</div>
+        <div class="price-row"><span class="price-now">From $240</span><span class="price-was">$560+</span></div>
+        <div class="price-save">You save up to $320 · 57% off retail</div>
         <ul class="perks">
           <li>Ships before general Kickstarter backers</li>
           <li>100-night sleep trial — full refund, no questions</li>
           <li>1-year warranty on Smart Control Hub</li>
-          <li>Firm ($299) for back &amp; combo · Soft ($311) for side sleepers</li>
+          <li>Firm ($240) for back &amp; combo · Soft ($252) for side sleepers</li>
           <li>Price locked at sign-up, pay only at launch</li>
         </ul>
       </div>
       <div class="offer-r">
-        <div class="urg-badge">🔥 Only 142 spots remaining</div>
-        <div class="spots-num">142</div>
+        <div class="urg-badge">🔥 Only <span class="spots-counter">142</span> spots remaining</div>
+        <div class="spots-num spots-counter">142</div>
         <div class="spots-lbl">early bird spots left at 50% off</div>
         <div id="bf-pill" class="e-pill" style="max-width:100%">
           <input id="bf-email" type="email" placeholder="your@email.com" autocomplete="email">
@@ -636,7 +637,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">When will it ship?<span class="faq-icon">+</span></button><div class="faq-ans">We're targeting Q3 2026. Early backers who reserve now ship before general Kickstarter backers.</div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">What if I don't like it?<span class="faq-icon">+</span></button><div class="faq-ans">Every Vytasync comes with a 100-night trial. If it doesn't change how you sleep, return it for a full refund. No questions asked.</div></div>
       <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Are there electronics inside the pillow?<span class="faq-icon">+</span></button><div class="faq-ans">No. The Smart Control Hub sits beside your bed. The pillow uses air pressure only — completely safe every night.</div></div>
-      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Firm or soft — which should I choose?<span class="faq-icon">+</span></button><div class="faq-ans">Firm ($299) suits back and combination sleepers. Soft ($311) is preferred by side sleepers and lighter builds. Both use the same adaptive air technology.</div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)">Firm or soft — which should I choose?<span class="faq-icon">+</span></button><div class="faq-ans">Firm ($240) suits back and combination sleepers. Soft ($252) is preferred by side sleepers and lighter builds. Both use the same adaptive air technology.</div></div>
     </div>
   </div>
 </section>
@@ -644,7 +645,7 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
 <!-- ══ BOTTOM CTA — B改动#10 ══════════════════════════════════ -->
 <div class="bottom-cta">
   <h2 class="reveal">Don't wake up stiff<br>one more morning.</h2>
-  <p class="sub reveal">142 early bird spots remaining. Lock in 50% off — free, no credit card.</p>
+  <p class="sub reveal"><span class="spots-counter">142</span> early bird spots remaining. Lock in 50% off — free, no credit card.</p>
   <div id="bf2-pill" class="b-pill reveal">
     <input id="bf2-email" type="email" placeholder="your@email.com" autocomplete="email">
     <button class="btn" onclick="sub('b2')">Claim 50% Off — Free</button>
@@ -687,6 +688,25 @@ footer{background:#0a0a0a;padding:24px 48px;display:flex;justify-content:space-b
     document.getElementById('cd-s').textContent=pad(Math.floor(d%60000/1000));
   }
   tick();setInterval(tick,1000);
+})();
+
+// 动态早鸟名额倒数：每日减 2.5，5/15 基线 142，下限 10
+(function updateEarlyBirdSpots(){
+  var baseDate = Date.UTC(2026, 4, 15);
+  var startSpots = 142, ratePerDay = 2.5, minSpots = 10, totalSpots = 300;
+  function update(){
+    var days = Math.max(0, (Date.now() - baseDate) / 86400000);
+    var spots = Math.max(minSpots, Math.round(startSpots - days * ratePerDay));
+    var claimed = totalSpots - spots;
+    var pct = (claimed / totalSpots * 100).toFixed(1);
+    document.querySelectorAll('.spots-counter').forEach(function(el){ el.textContent = spots; });
+    var claimedEl = document.querySelector('.prog-top strong');
+    if(claimedEl) claimedEl.textContent = claimed;
+    var fillEl = document.querySelector('.prog-fill');
+    if(fillEl) fillEl.style.width = pct + '%';
+  }
+  update();
+  setInterval(update, 3600000);
 })();
 
 // 跟踪 KS Follow CTA 点击（成功页二次转化），与 sub() Lead 事件用同样的 Pixel/GA 双路
