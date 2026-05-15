@@ -148,7 +148,7 @@ p.lead.onl{color:var(--muted-light)}
 
 /* ── MODES grid 3 videos ─────────────── */
 .modes-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
-.mode-vid{border-radius:16px;overflow:hidden;background:#1a1a1a;position:relative;aspect-ratio:9/16}
+.mode-vid{border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);position:relative;aspect-ratio:9/16}
 .mode-vid video{width:100%;height:100%;object-fit:cover}
 .mode-vid-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%);padding:20px 16px 16px}
 .vid-num{font-size:10px;letter-spacing:2.5px;color:var(--sage2);font-weight:600;text-transform:uppercase;margin-bottom:4px}
@@ -250,8 +250,8 @@ p.lead.onl{color:var(--muted-light)}
 .press-inner{max-width:1040px;margin:0 auto;text-align:center}
 .press-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:36px;display:block}
 .press-logos{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--bd-dark);border:1px solid var(--bd-dark);border-radius:14px;overflow:hidden;margin-bottom:48px}
-.press-logo{background:var(--dark);display:flex;align-items:center;justify-content:center;padding:22px 16px;min-height:68px;transition:background .2s}
-.press-logo img{height:22px;width:auto;max-width:110px;filter:brightness(0) invert(1);opacity:.7;transition:opacity .2s}
+.press-logo{background:var(--dark);display:flex;align-items:center;justify-content:center;padding:22px 16px;min-height:68px;min-width:0;overflow:hidden;transition:background .2s}
+.press-logo img{height:22px;width:auto;max-width:100%;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;transition:opacity .2s}
 .press-logo:hover img{opacity:1}
 .press-logo:hover{background:rgba(255,255,255,.04)}
 
@@ -265,6 +265,12 @@ p.lead.onl{color:var(--muted-light)}
   .press-logos{grid-template-columns:repeat(3,1fr)}
   .press-section{padding:60px 20px}
   .press-quotes{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .press-logos{grid-template-columns:repeat(2,1fr)}
+  .press-logo{padding:18px 10px;min-height:60px}
+  .press-logo img{height:20px}
+  .press-section{padding:48px 16px}
 }
 
 /* ── FOOTER ─────────────────────────── */
