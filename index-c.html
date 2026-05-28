@@ -819,6 +819,24 @@ section.reviews{
 .tech-wrap{max-width:1180px;margin:0 auto;width:100%;display:flex;justify-content:center;flex-direction:column;gap:14px}
 .tech-desktop{max-width:100%;max-height:84vh;width:auto;height:auto;display:block;object-fit:contain;margin:0 auto}
 .tech-mobile-1,.tech-mobile-2{display:none;width:100%;height:auto;border-radius:14px;overflow:hidden}
+
+/* 20dB banner overlay — covers the typo "Utra-Quiet" with corrected "Ultra-Quiet" image */
+.tech-desktop-wrap,.tech-mobile-1-wrap{position:relative;display:block}
+.tech-mobile-1-wrap{display:none}
+@media(max-width:780px){.tech-mobile-1-wrap{display:block}}
+.tech-overlay-20db{
+  position:absolute;display:block;
+  pointer-events:none;
+  border-radius:14px;
+}
+.tech-desktop-wrap .tech-overlay-20db{
+  /* Desktop tight composite: 20dB banner is right column ~upper-middle */
+  top:39.5%;left:57.5%;width:41.5%;height:auto;
+}
+.tech-mobile-1-wrap .tech-overlay-20db{
+  /* Mobile right column composite: 20dB banner spans full width */
+  top:37.5%;left:0%;width:100%;height:auto;
+}
 @media(max-width:780px){
   .tech-desktop{display:none}
   .tech-mobile-1,.tech-mobile-2{display:block}
@@ -1468,8 +1486,14 @@ gtag('config', 'G-S6C2L0RWEG', {
 <!-- ================= TECH SPECS — Desktop = 1 combined image / Mobile = split 2 stacked ================= -->
 <section class="tech-section" style="background:var(--light);padding:40px 24px">
   <div class="tech-wrap">
-    <img class="tech-desktop" src="./lp_assets/figma_real/tech_section_tight.webp" alt="Engineered for Sleep — Safe Airflow Design, Smart Sleep Engine, Soft Supportive, Smart Height Adjustment, Full App Control, Custom Ambient Light, &lt;20dB Ultra-Quiet Operation" loading="lazy">
-    <img class="tech-mobile-1" src="./lp_assets/figma_real/tech_section_right.webp" alt="What's inside — Smart Control Hub sits beside your bed. Air pressure only inside the pillow. &lt;20dB Ultra-Quiet Operation" loading="lazy">
+    <div class="tech-desktop-wrap">
+      <img class="tech-desktop" src="./lp_assets/figma_real/tech_section_tight.webp" alt="Engineered for Sleep — Safe Airflow Design, Smart Sleep Engine, Soft Supportive, Smart Height Adjustment, Full App Control, Custom Ambient Light, &lt;20dB Ultra-Quiet Operation" loading="lazy">
+      <img class="tech-overlay-20db" src="./lp_assets/figma_real/20db_banner_fixed.webp" alt="&lt;20dB Ultra-Quiet Operation" loading="lazy">
+    </div>
+    <div class="tech-mobile-1-wrap">
+      <img class="tech-mobile-1" src="./lp_assets/figma_real/tech_section_right.webp" alt="What's inside — Smart Control Hub sits beside your bed. Air pressure only inside the pillow. &lt;20dB Ultra-Quiet Operation" loading="lazy">
+      <img class="tech-overlay-20db" src="./lp_assets/figma_real/20db_banner_fixed.webp" alt="&lt;20dB Ultra-Quiet Operation" loading="lazy">
+    </div>
     <img class="tech-mobile-2" src="./lp_assets/figma_real/tech_section_left.webp" alt="Engineered features: Safe Airflow Design, Smart Sleep Engine, Soft Supportive, Smart Height Adjustment, Full App Control, Custom Ambient Light" loading="lazy">
   </div>
 </section>
