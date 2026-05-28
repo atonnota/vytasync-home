@@ -195,6 +195,60 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .e-pill .btn:disabled{opacity:.6;cursor:not-allowed}
 
 .hero-ok{display:none;color:var(--sage);font-weight:600;font-size:14px;padding:14px}
+
+/* Rich success state with KS follow CTA — replaces simple .hero-ok display:block */
+.success-card{
+  display:none;
+  background:linear-gradient(135deg,rgba(155,196,171,.12) 0%,rgba(155,196,171,.04) 100%);
+  border:1px solid rgba(155,196,171,.35);
+  border-radius:14px;padding:18px 20px;
+  max-width:460px;margin:0 0 12px;
+  animation:successPop .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes successPop{
+  0%{opacity:0;transform:translateY(-8px) scale(.95)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+.success-card.show{display:block}
+.success-card .sc-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:8px;
+}
+.success-card .sc-check{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--sage);color:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:16px;flex-shrink:0;
+}
+.success-card .sc-title{
+  font-weight:700;font-size:15px;color:var(--light);letter-spacing:-.2px;
+}
+.success-card .sc-sub{
+  font-size:13px;color:var(--muted-dark);line-height:1.5;margin-bottom:14px;
+  padding-left:38px;
+}
+.success-card .sc-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 18px;
+  background:#05ce78;color:#fff;
+  border-radius:10px;
+  font-weight:700;font-size:13.5px;letter-spacing:.2px;
+  text-decoration:none;
+  transition:transform .15s,background .2s,box-shadow .25s;
+  box-shadow:0 6px 18px rgba(5,206,120,.25);
+}
+.success-card .sc-cta:hover{
+  background:#04b568;transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(5,206,120,.4);
+}
+.success-card .sc-cta svg{width:16px;height:16px}
+.success-card .sc-footnote{
+  font-size:11px;color:var(--muted-dark);
+  text-align:center;margin-top:10px;line-height:1.4;
+}
+@media(max-width:480px){
+  .success-card{max-width:100%;padding:14px 16px}
+  .success-card .sc-sub{padding-left:0;margin-bottom:12px}
+}
 .hero-microcopy{font-size:12px;color:var(--muted-dark);margin-top:8px}
 
 /* Hero pain-point pills (chips above form) */
@@ -1211,7 +1265,18 @@ gtag('config', 'G-S6C2L0RWEG', {
         <input type="email" id="hf-email" placeholder="your@email.com" autocomplete="email">
         <button class="btn" onclick="sub('h')">Notify me →</button>
       </div>
-      <div class="hero-ok" id="hf-ok">✓ You're in. We'll email you the Day-1 link on June 9.</div>
+      <div class="success-card" id="hf-ok">
+        <div class="sc-head">
+          <div class="sc-check">✓</div>
+          <div class="sc-title">You're in! Day-1 link is yours.</div>
+        </div>
+        <p class="sc-sub">One more step — <strong style="color:var(--light)">follow us on Kickstarter</strong> to get the launch notification ping the moment we go live on June 9 (you'll have a 30-second head start before the public email goes out).</p>
+        <a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="sc-cta" onclick="if(typeof fbq!=='undefined')fbq('track','ClickButton',{button_name:'follow_ks',signup_location:'hero'});if(typeof gtag!=='undefined')gtag('event','follow_kickstarter',{signup_location:'hero'});">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.5c0-2.5-2-4.5-4.5-4.5-1.5 0-2.8.7-3.7 1.8L12 7l-.8-1.2c-.9-1.1-2.2-1.8-3.7-1.8C5 4 3 6 3 8.5c0 1.5.7 2.8 1.8 3.7L12 19l7.2-6.8c1.1-.9 1.8-2.2 1.8-3.7z"/></svg>
+          Follow Vytasync on Kickstarter →
+        </a>
+        <div class="sc-footnote">Takes 5 seconds · No credit card · Free to follow</div>
+      </div>
       <div class="hero-microcopy">No payment now · No credit card · Ships 1-2 months after Kickstarter closes</div>
     </div>
 
@@ -1230,10 +1295,10 @@ gtag('config', 'G-S6C2L0RWEG', {
     <div class="hero-scarcity">
       <div class="top">
         <span>Day-1 Spots</span>
-        <span class="left-num"><strong id="spots-left">98</strong> of 500 remaining</span>
+        <span class="left-num"><strong id="spots-left">180</strong> of 800 remaining</span>
       </div>
-      <div class="bar"><div class="fill" id="spots-fill" style="width:80%"></div></div>
-      <div class="micro">Only <strong id="spots-left-2">98</strong> Day-1 spots remain at the $240 price</div>
+      <div class="bar"><div class="fill" id="spots-fill" style="width:77.5%"></div></div>
+      <div class="micro">Only <strong id="spots-left-2">180</strong> Day-1 spots remain at the $240 price</div>
     </div>
 
     <div class="hero-specs">
@@ -1534,7 +1599,18 @@ gtag('config', 'G-S6C2L0RWEG', {
           <input type="email" id="bf-email" placeholder="your@email.com" autocomplete="email">
           <button class="btn" onclick="sub('b')">Claim — Free</button>
         </div>
-        <div class="hero-ok" id="bf-ok" style="text-align:center">✓ You're in. We'll email you the Day-1 link on June 9.</div>
+        <div class="success-card" id="bf-ok" style="max-width:100%;margin:14px auto 0">
+          <div class="sc-head">
+            <div class="sc-check">✓</div>
+            <div class="sc-title">You're in! Day-1 link is yours.</div>
+          </div>
+          <p class="sc-sub">One more step — <strong style="color:var(--light)">follow us on Kickstarter</strong> for a 30-second head start when we go live June 9.</p>
+          <a href="https://www.kickstarter.com/projects/185996931/vytasync-the-smart-air-pillow" target="_blank" rel="noopener" class="sc-cta" onclick="if(typeof fbq!=='undefined')fbq('track','ClickButton',{button_name:'follow_ks',signup_location:'pricing'});if(typeof gtag!=='undefined')gtag('event','follow_kickstarter',{signup_location:'pricing'});">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 8.5c0-2.5-2-4.5-4.5-4.5-1.5 0-2.8.7-3.7 1.8L12 7l-.8-1.2c-.9-1.1-2.2-1.8-3.7-1.8C5 4 3 6 3 8.5c0 1.5.7 2.8 1.8 3.7L12 19l7.2-6.8c1.1-.9 1.8-2.2 1.8-3.7z"/></svg>
+            Follow Vytasync on Kickstarter →
+          </a>
+          <div class="sc-footnote">Takes 5 seconds · No credit card · Free to follow</div>
+        </div>
         <p class="pricing-micro">No spam · Unsubscribe anytime · Ships 1-2 months after Kickstarter closes</p>
 
         <!-- Recent join activity (3-4 entries, refreshes every 60s) -->
@@ -1686,14 +1762,14 @@ gtag('config', 'G-S6C2L0RWEG', {
 // ============== SCARCITY + ACTIVITY (shared spots counter, daily-capped decay) ==============
 window.VytaScarcity = (function(){
   // -------- Decay plan --------
-  // Total Day-1 spots: 500 allocated. Anchor 5/28 = 98 remaining. Launch 6/9 = ~5 remaining.
-  // 93 spots decrement over 12 days = ~7.75/day average + ±2 daily variance.
-  // PER-DAY CAP: max 4 client-side takeOne events per UTC day (caps localStorage drain).
-  var TOTAL_SPOTS = 500;
-  var ANCHOR_LEFT_5_28 = 98;
-  var LAUNCH_LEFT_6_9 = 5;
+  // Total Day-1 spots: 800. Anchor 5/28 = 180 remaining. Launch 6/9 = 100 remaining.
+  // 80 spots decrement over 12 days = ~6.7/day average + ±1 daily variance.
+  // PER-DAY CAP: max 2 client-side takeOne events per UTC day (slower drain).
+  var TOTAL_SPOTS = 800;
+  var ANCHOR_LEFT_5_28 = 180;
+  var LAUNCH_LEFT_6_9 = 100;
   var TOTAL_DAYS = 12;
-  var MAX_DAILY_TAKES = 4;  // client extra decrement on top of baseline drift
+  var MAX_DAILY_TAKES = 2;  // client extra decrement on top of baseline drift
 
   function dailyBaseline(){
     var now = new Date();
@@ -1704,7 +1780,7 @@ window.VytaScarcity = (function(){
     function mulberry32(a){return function(){var t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
     var seed = now.getUTCFullYear()*10000 + (now.getUTCMonth()+1)*100 + now.getUTCDate();
     var rng = mulberry32(seed);
-    var variance = Math.floor(rng() * 5) - 2;  // -2..+2
+    var variance = Math.floor(rng() * 3) - 1;  // -1..+1 (small variance, slower visual change)
     var decayPerDay = (ANCHOR_LEFT_5_28 - LAUNCH_LEFT_6_9) / TOTAL_DAYS;  // ~7.75
     var baseLeft = Math.round(ANCHOR_LEFT_5_28 - daysSinceAnchor * decayPerDay);
     return Math.max(LAUNCH_LEFT_6_9, Math.min(ANCHOR_LEFT_5_28, baseLeft + variance));
@@ -1890,19 +1966,19 @@ window.VytaScarcity = (function(){
     }, 7000);
   }
 
-  // Backfill: on page load, if no recent events in history, seed 2 events at realistic past times.
-  // This gives returning users a sense that activity continued while they were away.
+  // Backfill: seed ≥4 events at realistic past times. Pricing-joins panel reads same pool, needs 4.
   var state = window.VytaScarcity.state;
-  if (state.events.length === 0) {
-    // First-ever visit today — seed with 2 past events (10-40 min ago)
-    var seedCount = 2;
+  if (state.events.length < 4) {
+    var needed = 4 - state.events.length;
     var now = Date.now();
-    for (var i = 0; i < seedCount; i++) {
-      var minsAgo = 8 + Math.floor(Math.random() * 35);  // 8-43 min ago
+    var spreads = [[1,3],[5,15],[20,45],[60,120]];
+    for (var i = 0; i < needed; i++) {
+      var sp = spreads[i] || [10,30];
+      var minsAgo = sp[0] + Math.floor(Math.random() * (sp[1] - sp[0]));
       var ev = makeEvent(now - minsAgo * 60000);
       state.events.push(ev);
     }
-    // Persist the seed (but don't decrement spots for seed events — they're "background activity")
+    // Persist seed (no spots decrement — these are "background activity")
     try { localStorage.setItem('vyta_state', JSON.stringify(state)); } catch(e) {}
   }
 
@@ -1946,36 +2022,13 @@ window.VytaScarcity = (function(){
   setTimeout(loop, 5000);
 })();
 
-// ============== PRICING JOINS — static 4-entry "recent joins" list under email form ==============
+// ============== PRICING JOINS — shares same events pool as toast (VytaScarcity.state.events) ==============
 (function(){
   var listEl = document.getElementById('pricing-joins-list');
-  if (!listEl) return;
+  if (!listEl || !window.VytaScarcity) return;
 
-  var POOL = [
-    {p:'Da',d:'gmail.com',city:'Brooklyn, NY'},{p:'Sa',d:'gmail.com',city:'Austin, TX'},
-    {p:'Mi',d:'gmail.com',city:'Seattle, WA'},{p:'Je',d:'hotmail.com',city:'London, UK'},
-    {p:'An',d:'gmail.com',city:'Manchester, UK'},{p:'Ch',d:'outlook.com',city:'Chicago, IL'},
-    {p:'Ja',d:'gmail.com',city:'Sydney, AU'},{p:'Ke',d:'gmail.com',city:'Toronto, CA'},
-    {p:'Li',d:'gmail.com',city:'Berlin, DE'},{p:'Em',d:'yahoo.com',city:'Boston, MA'},
-    {p:'To',d:'gmail.com',city:'Melbourne, AU'},{p:'Ry',d:'gmail.com',city:'Denver, CO'},
-    {p:'Ka',d:'icloud.com',city:'Auckland, NZ'},{p:'Pa',d:'gmail.com',city:'Dublin, IE'},
-    {p:'Lu',d:'gmail.com',city:'Amsterdam, NL'},{p:'Ni',d:'gmail.com',city:'Edinburgh, UK'},
-    {p:'Br',d:'outlook.com',city:'Portland, OR'},{p:'St',d:'gmail.com',city:'San Diego, CA'},
-    {p:'He',d:'gmail.com',city:'Vancouver, CA'},{p:'Ol',d:'gmail.com',city:'Birmingham, UK'},
-    {p:'Ai',d:'gmail.com',city:'Glasgow, UK'},{p:'Ma',d:'gmail.com',city:'Phoenix, AZ'},
-    {p:'Et',d:'gmail.com',city:'Atlanta, GA'},{p:'Be',d:'icloud.com',city:'Brisbane, AU'},
-    {p:'Wi',d:'gmail.com',city:'Dallas, TX'},{p:'Fr',d:'gmail.com',city:'Liverpool, UK'},
-    {p:'Ru',d:'gmail.com',city:'Munich, DE'},{p:'Iv',d:'gmail.com',city:'Stockholm, SE'}
-  ];
   var COLORS=['#9bc4ab','#d4a854','#e85a4f','#7aa6d6','#c89aff'];
 
-  // Per-hour deterministic seed → entries stable for 1 hour, refresh on next hour boundary
-  function makeRng(seed){
-    return function(){
-      seed = (seed * 9301 + 49297) % 233280;
-      return seed / 233280;
-    };
-  }
   function fmtAgo(ts){
     var mins = Math.floor((Date.now() - ts) / 60000);
     if (mins < 1) return 'just now';
@@ -1985,34 +2038,14 @@ window.VytaScarcity = (function(){
     return hrs + (hrs === 1 ? ' hour ago' : ' hours ago');
   }
 
-  function buildEntries(){
-    // Seed by current hour so list is stable for 1 hour
-    var seed = Math.floor(Date.now() / 3600000);
-    var r = makeRng(seed);
-    var pick = function(arr){return arr[Math.floor(r() * arr.length)]};
-    var entries = [];
-    // 4 entries — first is freshest (1-3 min), then 5-15, 20-45, 60-120
-    var times = [
-      1 + Math.floor(r() * 3),
-      5 + Math.floor(r() * 11),
-      20 + Math.floor(r() * 26),
-      60 + Math.floor(r() * 60)
-    ];
-    for (var i = 0; i < 4; i++) {
-      var p = pick(POOL);
-      entries.push({
-        prefix: p.p,
-        avatar: p.p[0].toUpperCase(),
-        email: p.p + '****@' + p.d,
-        city: p.city,
-        ts: Date.now() - times[i] * 60000
-      });
-    }
-    return entries;
-  }
-
   function renderList(){
-    var entries = buildEntries();
+    // Pull most-recent events from the SHARED toast/scarcity pool
+    var allEvents = (window.VytaScarcity.state.events || []).slice();
+    // Sort newest first
+    allEvents.sort(function(a,b){return b.ts - a.ts});
+    var entries = allEvents.slice(0, 4);
+    if (entries.length === 0) return;
+
     var html = '';
     for (var i = 0; i < entries.length; i++) {
       var e = entries[i];
@@ -2030,8 +2063,8 @@ window.VytaScarcity = (function(){
   }
   renderList();
 
-  // Refresh "X min ago" every 60 sec — seed only changes per hour, so list itself stays put
-  setInterval(renderList, 60000);
+  // Refresh every 20s — picks up new toast events + advances "X min ago" timers
+  setInterval(renderList, 20000);
 })();
 
 // ============== STICKY VISIBILITY ==============
@@ -2073,7 +2106,7 @@ async function sub(src){
   try {
     if (localStorage.getItem(alreadyKey)) {
       if (pid) document.getElementById(pid).style.display = 'none';
-      document.getElementById(oid).style.display = 'block';
+      document.getElementById(oid).classList.add('show');document.getElementById(oid).style.display='block';
       if (src === 'sticky'){
         el.style.display = 'none';
         btn.style.display = 'none';
@@ -2130,7 +2163,7 @@ async function sub(src){
 
       // Show success
       if (pid) document.getElementById(pid).style.display = 'none';
-      document.getElementById(oid).style.display = 'block';
+      document.getElementById(oid).classList.add('show');document.getElementById(oid).style.display='block';
       if (src === 'sticky') {
         el.style.display = 'none';
         btn.style.display = 'none';
